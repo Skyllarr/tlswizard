@@ -80,7 +80,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="ButtonHomeNext" mnemonicParsing="false" onAction="#handleButtonHomeNextEvent" prefHeight="24.0" prefWidth="71.0" text="Next -&gt;" />
+                  <Button fx:id="ButtonHomeNext" mnemonicParsing="false" onAction="#handleButtonHomeNextEvent" prefHeight="24.0" prefWidth="71.0" text="Next -&gt;" /> Just a minor but the button Next on Home page shows to me only as `Nex...`. Is the same true for you? IMO the width of the button could be increased slightly for this reason
                </children>
                <VBox.margin>
                   <Insets top="10.0" />

@@ -77,7 +77,7 @@ public class ServerConnnector {
 		this.tlsConfiguration = tlsConfiguration;
 		this.ipAddress = this.tlsConfiguration.getServerIP();
 		
-		this.padding = uuid.toString();
+		this.padding = uuid.toString(); // can I ask what this means? Is the padding of random size ( randomUUID() )?
 		
 		this.genKeyStoreName = "wizgenks" + this.padding;
 		this.genKeyManagerName = "wizgenkm" + this.padding;
@@ -103,7 +103,7 @@ public class ServerConnnector {
 		 * /subsystem=elytron/key-store=exampleKeyStore:add(
 		 * path=exampleserver.keystore.pkcs12, 
 		 * relative-to=jboss.server.config.dir,
-		 * credential-reference={clear-text=secret},type=PKCS12) 
+		 * credential-reference={clear-text=secret},type=PKCS12) // just a total detail but it is not "secret" but "keystorepass", BTW should we provide a possibility later for a user to configure the password?
 		 */
 		
 		ModelNode keyStore = new ModelNode();
@@ -119,7 +119,7 @@ public class ServerConnnector {
 		 * /subsystem=elytron/key-store=exampleKeyStore
 		 * :generate-key-pair(alias=localhost,algorithm=RSA,
 		 * key-size=2048,validity=365,credential-reference=
-		 * {clear-text=secret},distinguished-name="CN=localhost")
+		 * {clear-text=secret},distinguished-name="CN=localhost") // total minor but it is not secret but "keystorepass"
 		 */
 		
 		ModelNode generateCertificate = new ModelNode();
@@ -255,7 +255,7 @@ public class ServerConnnector {
 	
 	public String getConfigurationDetails () {
 		String configurationDetails = "";
-		
+
 		if (tlsConfiguration.getSecure().equals(TLSConfiguration.Secure.APPLICATIONS)) {
 			configurationDetails += "Reload the server now to secure your applications with TLS\n" +
 									"Command to reload the server:\n *Nix: wildfly_home/bin/jboss-cli.sh --connect --command=\":reload\"\n" +
@@ -265,7 +265,7 @@ public class ServerConnnector {
 		}
 		else if (tlsConfiguration.getSecure().equals(TLSConfiguration.Secure.MANAGEMENT_INTERFACES)) {
 			configurationDetails += "Reload the server now to secure the management interfaces with TLS\n" +
-					"Command to reload the server:\n *Nix: wildfly_home/bin/jboss-cli.sh --connect --command=\":reload\"\n" +
+					"Command to reload the server:\n *Nix: wildfly_home/bin/jboss-cli.sh --connect --command=\":reload\"\n" + // just a total minor but I think *Nix tends to be written with small `n`
 					"Windows: wildfly_home\\bin\\jboss-cli.sh --connect --command=\\\":reload\\\"" + "\n" +
 					"After you reload the server, you can check TLS by navigating to https://" + this.ipAddress + ":9993\n";
 		}
